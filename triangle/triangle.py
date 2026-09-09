@@ -9,7 +9,9 @@ def check_triangle(a, b, c):
     else:
         return "Irregular triangle"
 
-
+if __name__ == "__main__":
     a = int(input("Enter the first side of the triangle:"))
     b = int(input("Enter the second side of the triangle:"))
     c = int(input("Enter the third side of the triangle:"))
+
+    print(check_triangle(a, b, c))
