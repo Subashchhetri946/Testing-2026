@@ -1,0 +1,8 @@
+# Subash Chhetri
+
+For this assignment, I have made three test cases for the triangle testing. I tested equilateral triangle, one isosceles triangle, and one irregular triangle. These tests is checked.
+
+I feel like this assignment is only enough for basic reqirements of assignment but would not work in a real project. Here, we can have many situations that can cause problems such as zero, a negative number, text instead of number, or length of side that cannot make a triangle look.
+
+For  this assignment,  I think the three tests are enough for the three triangle types that are requested.  In real project, I would add more test cases for checking invalid inputs, zero and negative values, and side lengths that cannot form a triangle.
+
