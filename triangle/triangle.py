@@ -1,3 +1,4 @@
+# Subash Chhetri
 def check_triangle(a, b, c):
 
     if a == b and b == c:
