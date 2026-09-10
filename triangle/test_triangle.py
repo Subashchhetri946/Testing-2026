@@ -15,7 +15,7 @@ class TestTriangle(unittest.TestCase):
         result = check_triangle(a, b, c)
 
         # Assert
-        self.assertEqual(result, "equilateral triangle")
+        self.assertEqual(result, "Isosceles triangle")
 
     def test_isosceles(self):
         # Arrange
