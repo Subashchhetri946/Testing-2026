@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.14.7 on win32)" generated="2026-09-15T17:28:27.951897" rpa="false" schemaversion="5">
+<suite id="s1" name="Testing 2026" source="C:\Testing 2026">
+<suite id="s1-s1" name="Webtest" source="C:\Testing 2026\webtest.robot">
+<test id="s1-s1-t1" name="webtest" line="5">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-09-15T17:28:28.437744" level="INFO">Opening browser 'Chrome' to base url 'https://www.google.com'.</msg>
+<arg>https://www.google.com</arg>
+<arg>Chrome</arg>
+<arg>options=add_experimental_option("detach", True)</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-09-15T17:28:28.437196" elapsed="7.596398"/>
+</kw>
+<status status="PASS" start="2026-09-15T17:28:28.432484" elapsed="7.601733"/>
+</test>
+<status status="PASS" start="2026-09-15T17:28:28.050468" elapsed="7.993272"/>
+</suite>
+<status status="PASS" start="2026-09-15T17:28:27.973333" elapsed="8.080242"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Testing 2026" id="s1" pass="1" fail="0" skip="0">Testing 2026</stat>
+<stat name="Webtest" id="s1-s1" pass="1" fail="0" skip="0">Testing 2026.Webtest</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
