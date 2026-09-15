@@ -15,3 +15,9 @@ In the 5th test, player chooses scissors and computer choose paper. So, the play
 In the end test, player chooses rock and computer choose rock. So, the result is draw.
 
 These tests are enough for the basic requirements of this assignment because it checks all the three possible results : win, lose and draw. As you can see on the recording , i have done 6 tests to prove this point.
+
+
+Also, i have changed one expected result to the wrong value on purpose. 
+When i run the test again, then it fails. This shows that my test can detect an incorrect result.
+
+Finally, i changed it back to the correct result, and now all the three tests pass again as in vedio.
