@@ -13,7 +13,8 @@ class TestRockPaperScissors(unittest.TestCase):
         result = check_winner(player, computer)
 
         # Assert
-        self.assertEqual(result, "Player wins")
+        self.assertEqual(result, "Player wins") 
+        
 
     def test_computer_wins(self):
         # Arrange

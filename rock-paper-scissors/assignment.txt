@@ -1,0 +1,17 @@
+# Subash Chhetri
+
+Here, I have made three unit tests for my rock-paper-scissor assignment.
+
+In the 1st test, player chooses rock and computer choose paper. So, the computer wins.
+
+In the 2nd test, player chooses paper and computer choose scissors. So, the computer wins.
+
+In the 3rd test, player chooses rock and computer choose paper. So, the computer wins again.
+
+In the 4th test, player chooses rock and computer choose scissors. So, the players wins now.
+
+In the 5th test, player chooses scissors and computer choose paper. So, the players wins again.
+
+In the end test, player chooses rock and computer choose rock. So, the result is draw.
+
+These tests are enough for the basic requirements of this assignment because it checks all the three possible results : win, lose and draw. As you can see on the recording , i have done 6 tests to prove this point.
