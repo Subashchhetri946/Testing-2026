@@ -15,7 +15,7 @@ ${two}       Duck
 *** Test Cases ***
 Create Data For Tests
     @{names}=     Create List     Donald        Mickey     Goofy
-    Set Test Varible 
+    Set Test Variable           @{names} 
 
 
 *** Test Cases ***
@@ -45,17 +45,18 @@ Add value to List
 
 
 Remove from List
+    @{names}=     Create List     Donald        Mickey     Goofy
     ${new}=       Remove From List           ${names}      0
     Should Be Equal          ${new}       Donald
     Should Be Equal          ${names}[0]    Mickey
 
 
 Loop the List
-    FOR   ${index}       IN Range           1           10
-        Log     ${index}
+    FOR    ${index}     IN  RANGE    1     10
+        Log    ${index}
     END
 
 
 Make a new directory
-    Create Directory           C:\Testing 2026\testing
-    Directory Should Exist        C:\Testing 2026\testing
+    Create Directory           C:\\Testing 2026\\testing
+    Directory Should Exist        C:\\Testing 2026\\testing
