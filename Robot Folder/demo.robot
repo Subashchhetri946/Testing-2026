@@ -57,6 +57,8 @@ Loop the List
     END
 
 
-Make a new directory
-    Create Directory           C:\\Testing 2026\\testing
-    Directory Should Exist        C:\\Testing 2026\\testing
+Make a new directory  
+    Create Directory         E:/Profile/Web-Dev-Projects/Testing-2026/testing
+    Directory Should Exist        E:/Profile/Web-Dev-Projects/Testing-2026/testing
+    
+
