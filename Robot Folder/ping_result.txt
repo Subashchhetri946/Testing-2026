@@ -1,0 +1,4 @@
+Website - IP address - Average ping time
+www.whitehouse.gov - 192.0.66.51 - 30 ms
+www.iltalehti.fi - 13.33.235.57 - 30 ms
+best.aliexpress.com - 2.22.145.84 - 28 ms
