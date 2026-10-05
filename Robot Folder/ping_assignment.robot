@@ -3,6 +3,8 @@ Library        OperatingSystem
 Library        Collections
 Library        String
 
+*** Comments ***
+// My Name: Subash Chhetri
 *** Variables ***
 ${input_file}        E:/Profile/Web-Dev-Projects/Testing-2026/Robot Folder/webpages.txt
 ${result_file}       E:/Profile/Web-Dev-Projects/Testing-2026/Robot Folder/ping_result.txt
