@@ -1,460 +1,256 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.4.2 (Python 3.14.7 on win32)" generated="2026-10-05T16:30:05.816993" rpa="false" schemaversion="5">
-<suite id="s1" name="Ping Assignment" source="e:\Profile\Web-Dev-Projects\Testing-2026\Robot Folder\ping_assignment.robot">
-<test id="s1-t1" name="Read addresses from ping command from file" line="13">
-<kw name="Get File" owner="OperatingSystem">
-<msg time="2026-10-05T16:30:05.870890" level="INFO" html="true">Getting file '&lt;a href="file://E:\Profile\Web-Dev-Projects\Testing-2026\Robot Folder\webpages.txt"&gt;E:\Profile\Web-Dev-Projects\Testing-2026\Robot Folder\webpages.txt&lt;/a&gt;'.</msg>
-<msg time="2026-10-05T16:30:05.873167" level="INFO">${text} = www.whitehouse.gov
-www.iltalehti.fi
-best.aliexpress.com</msg>
-<var>${text}</var>
-<arg>${input_file}</arg>
-<doc>Returns the contents of a specified file.</doc>
-<status status="PASS" start="2026-10-05T16:30:05.870398" elapsed="0.002897"/>
+<robot generator="Robot 7.4.2 (Python 3.14.7 on win32)" generated="2026-10-09T17:39:39.561532" rpa="false" schemaversion="5">
+<suite id="s1" name="Flight Booking" source="e:\Profile\Web-Dev-Projects\Testing-2026\Robot Folder\flight_booking.robot">
+<test id="s1-t1" name="Open the travel website" line="15">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:39:39.908442" level="INFO">Opening browser 'Chrome' to base url 'http://blazedemo.com/'.</msg>
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<arg>options=add_argument("--log-level=3")</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-10-09T17:39:39.907877" elapsed="1.680677"/>
 </kw>
-<kw name="Split String" owner="String">
-<msg time="2026-10-05T16:30:05.874223" level="INFO">@{addresses} = [ www.whitehouse.gov | www.iltalehti.fi | best.aliexpress.com ]</msg>
-<var>@{addresses}</var>
-<arg>${text}</arg>
-<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2026-10-05T16:30:05.873828" elapsed="0.000490"/>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-10-09T17:39:41.589357" elapsed="0.024532"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-10-09T17:39:42.615428" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-10-09T17:39:41.614491" elapsed="1.001291"/>
+</kw>
+<status status="PASS" start="2026-10-09T17:39:39.906549" elapsed="2.709856"/>
+</test>
+<test id="s1-t2" name="Check the welcome message" line="20">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:39:42.634989" level="INFO">Element 'xpath://h1' is displayed.</msg>
+<arg>xpath://h1</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2026-10-09T17:39:42.618274" elapsed="0.017061"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:39:42.648856" level="INFO">Element 'xpath://h1' contains text 'Welcome to the Simple Travel Agency!'.</msg>
+<arg>xpath://h1</arg>
+<arg>Welcome to the Simple Travel Agency!</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2026-10-09T17:39:42.635873" elapsed="0.013331"/>
+</kw>
+<status status="PASS" start="2026-10-09T17:39:42.617495" elapsed="0.032284"/>
+</test>
+<test id="s1-t3" name="Choose Boston" line="24">
+<kw name="Select From List By Value" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:39:42.651809" level="INFO">Selecting options from selection list 'name:fromPort' by value Boston.</msg>
+<arg>name:fromPort</arg>
+<arg>${departure}</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<status status="PASS" start="2026-10-09T17:39:42.651358" elapsed="0.051289"/>
+</kw>
+<status status="PASS" start="2026-10-09T17:39:42.650649" elapsed="0.052631"/>
+</test>
+<test id="s1-t4" name="Choose Cairo" line="27">
+<kw name="Select From List By Value" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:39:42.705611" level="INFO">Selecting options from selection list 'name:toPort' by value Cairo.</msg>
+<arg>name:toPort</arg>
+<arg>${destination}</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<status status="PASS" start="2026-10-09T17:39:42.705013" elapsed="0.044500"/>
+</kw>
+<status status="PASS" start="2026-10-09T17:39:42.704306" elapsed="0.045855"/>
+</test>
+<test id="s1-t5" name="Check the Find Flights button" line="30">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:39:42.764733" level="INFO">Element 'xpath://input[@value='Find Flights' and not(@disabled)]' is displayed.</msg>
+<arg>xpath://input[@value='Find Flights' and not(@disabled)]</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2026-10-09T17:39:42.751821" elapsed="0.013298"/>
+</kw>
+<status status="PASS" start="2026-10-09T17:39:42.751083" elapsed="0.014600"/>
+</test>
+<test id="s1-t6" name="Search for flights" line="34">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:39:42.767595" level="INFO">Clicking button 'xpath://input[@value='Find Flights']'.</msg>
+<arg>xpath://input[@value='Find Flights']</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-10-09T17:39:42.767140" elapsed="0.362297"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-10-09T17:39:44.131152" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-10-09T17:39:43.130008" elapsed="1.001470"/>
+</kw>
+<status status="PASS" start="2026-10-09T17:39:42.766522" elapsed="1.365443"/>
+</test>
+<test id="s1-t7" name="Check the flight route" line="38">
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:39:44.146459" level="INFO">Element 'xpath://h3' contains text 'Flights from Boston to Cairo:'.</msg>
+<arg>xpath://h3</arg>
+<arg>Flights from ${departure} to ${destination}:</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2026-10-09T17:39:44.133394" elapsed="0.013414"/>
+</kw>
+<status status="PASS" start="2026-10-09T17:39:44.132838" elapsed="0.014533"/>
+</test>
+<test id="s1-t8" name="Check that a flight is available" line="41">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:39:44.161234" level="INFO">Element 'xpath://table/tbody/tr[1]/td[1]/input' is displayed.</msg>
+<arg>xpath://table/tbody/tr[1]/td[1]/input</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2026-10-09T17:39:44.148709" elapsed="0.012836"/>
+</kw>
+<status status="PASS" start="2026-10-09T17:39:44.148178" elapsed="0.013911"/>
+</test>
+<test id="s1-t9" name="Save the flight details and choose it" line="45">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:39:44.176494" level="INFO">${price} = $472.56</msg>
+<var>${price}</var>
+<arg>xpath://table/tbody/tr[1]/td[6]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-10-09T17:39:44.163369" elapsed="0.013406"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:39:44.190354" level="INFO">${number} = 43</msg>
+<var>${number}</var>
+<arg>xpath://table/tbody/tr[1]/td[2]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-10-09T17:39:44.177379" elapsed="0.013263"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:39:44.204201" level="INFO">${airline} = Virgin America</msg>
+<var>${airline}</var>
+<arg>xpath://table/tbody/tr[1]/td[3]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-10-09T17:39:44.191175" elapsed="0.013308"/>
 </kw>
 <kw name="Set Global Variable" owner="BuiltIn">
-<msg time="2026-10-05T16:30:05.875098" level="INFO">${addresses} = ['www.whitehouse.gov', 'www.iltalehti.fi', 'best.aliexpress.com']</msg>
-<arg>${addresses}</arg>
+<msg time="2026-10-09T17:39:44.205957" level="INFO">${flight_price} = $472.56</msg>
+<arg>\${flight_price}</arg>
+<arg>${price}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<status status="PASS" start="2026-10-05T16:30:05.874698" elapsed="0.000536"/>
-</kw>
-<status status="PASS" start="2026-10-05T16:30:05.869066" elapsed="0.006468"/>
-</test>
-<test id="s1-t2" name="Find out IP, average ping time in loop and create result file" line="19">
-<kw name="Get File" owner="OperatingSystem">
-<msg time="2026-10-05T16:30:05.876964" level="INFO" html="true">Getting file '&lt;a href="file://E:\Profile\Web-Dev-Projects\Testing-2026\Robot Folder\webpages.txt"&gt;E:\Profile\Web-Dev-Projects\Testing-2026\Robot Folder\webpages.txt&lt;/a&gt;'.</msg>
-<msg time="2026-10-05T16:30:05.877430" level="INFO">${text} = www.whitehouse.gov
-www.iltalehti.fi
-best.aliexpress.com</msg>
-<var>${text}</var>
-<arg>${input_file}</arg>
-<doc>Returns the contents of a specified file.</doc>
-<status status="PASS" start="2026-10-05T16:30:05.876733" elapsed="0.000784"/>
-</kw>
-<kw name="Split String" owner="String">
-<msg time="2026-10-05T16:30:05.878099" level="INFO">@{addresses} = [ www.whitehouse.gov | www.iltalehti.fi | best.aliexpress.com ]</msg>
-<var>@{addresses}</var>
-<arg>${text}</arg>
-<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2026-10-05T16:30:05.877859" elapsed="0.000312"/>
+<status status="PASS" start="2026-10-09T17:39:44.205161" elapsed="0.001031"/>
 </kw>
 <kw name="Set Global Variable" owner="BuiltIn">
-<msg time="2026-10-05T16:30:05.878883" level="INFO">${addresses} = ['www.whitehouse.gov', 'www.iltalehti.fi', 'best.aliexpress.com']</msg>
-<arg>${addresses}</arg>
+<msg time="2026-10-09T17:39:44.207547" level="INFO">${flight_number} = 43</msg>
+<arg>\${flight_number}</arg>
+<arg>${number}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<status status="PASS" start="2026-10-05T16:30:05.878517" elapsed="0.000455"/>
+<status status="PASS" start="2026-10-09T17:39:44.206833" elapsed="0.000929"/>
 </kw>
-<kw name="Create File" owner="OperatingSystem">
-<msg time="2026-10-05T16:30:05.880168" level="INFO" html="true">Created file '&lt;a href="file://E:\Profile\Web-Dev-Projects\Testing-2026\Robot Folder\ping_result.txt"&gt;E:\Profile\Web-Dev-Projects\Testing-2026\Robot Folder\ping_result.txt&lt;/a&gt;'.</msg>
-<arg>${result_file}</arg>
-<arg>Website - IP address - Average ping time\n</arg>
-<doc>Creates a file with the given content and encoding.</doc>
-<status status="PASS" start="2026-10-05T16:30:05.879261" elapsed="0.001050"/>
-</kw>
-<kw name="Get Length" owner="BuiltIn">
-<msg time="2026-10-05T16:30:05.881220" level="INFO">Length is 3.</msg>
-<msg time="2026-10-05T16:30:05.881376" level="INFO">${count} = 3</msg>
-<var>${count}</var>
-<arg>${addresses}</arg>
-<doc>Returns and logs the length of the given item as an integer.</doc>
-<status status="PASS" start="2026-10-05T16:30:05.880664" elapsed="0.000798"/>
-</kw>
-<for flavor="IN RANGE">
-<iter>
-<kw name="Run And Return Rc And Output" owner="OperatingSystem">
-<msg time="2026-10-05T16:30:05.894108" level="INFO">Running command 'ping www.whitehouse.gov 2&gt;&amp;1'.</msg>
-<msg time="2026-10-05T16:30:09.000550" level="INFO">${output} = (0, '\nPinging wh47.go-vip.net [192.0.66.51] with 32 bytes of data:\nReply from 192.0.66.51: bytes=32 time=53ms TTL=59\nReply from 192.0.66.51: bytes=32 time=47ms TTL=59\nReply from 192.0.66.51: bytes...</msg>
-<var>${output}</var>
-<arg>ping ${addresses}[${index}]</arg>
-<doc>_This keyword is considered deprecated. Use the
-[http://robotframework.org/robotframework/latest/libraries/Process.html|
-Process] library instead._</doc>
-<status status="PASS" start="2026-10-05T16:30:05.882231" elapsed="3.118492"/>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2026-10-09T17:39:44.208929" level="INFO">${flight_airline} = Virgin America</msg>
+<arg>\${flight_airline}</arg>
+<arg>${airline}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2026-10-09T17:39:44.208312" elapsed="0.000826"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2026-10-05T16:30:09.001237" level="INFO">(0, '\nPinging wh47.go-vip.net [192.0.66.51] with 32 bytes of data:\nReply from 192.0.66.51: bytes=32 time=53ms TTL=59\nReply from 192.0.66.51: bytes=32 time=47ms TTL=59\nReply from 192.0.66.51: bytes=32 time=24ms TTL=59\nReply from 192.0.66.51: bytes=32 time=32ms TTL=59\n\nPing statistics for 192.0.66.51:\n    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),\nApproximate round trip times in milli-seconds:\n    Minimum = 24ms, Maximum = 53ms, Average = 39ms')</msg>
-<arg>${output}</arg>
+<msg time="2026-10-09T17:39:44.210478" level="INFO">Selected flight: 43, Virgin America, $472.56</msg>
+<arg>Selected flight: ${flight_number}, ${flight_airline}, ${flight_price}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2026-10-05T16:30:09.000909" elapsed="0.000436"/>
+<status status="PASS" start="2026-10-09T17:39:44.209781" elapsed="0.000928"/>
 </kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2026-10-05T16:30:09.001775" level="INFO">${text} = 
-Pinging wh47.go-vip.net [192.0.66.51] with 32 bytes of data:
-Reply from 192.0.66.51: bytes=32 time=53ms TTL=59
-Reply from 192.0.66.51: bytes=32 time=47ms TTL=59
-Reply from 192.0.66.51: bytes=32 time=...</msg>
-<var>${text}</var>
-<arg>${output}[1]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2026-10-05T16:30:09.001467" elapsed="0.000390"/>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:39:44.211691" level="INFO">Clicking button 'xpath://table/tbody/tr[1]/td[1]/input'.</msg>
+<arg>xpath://table/tbody/tr[1]/td[1]/input</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-10-09T17:39:44.211285" elapsed="0.382537"/>
 </kw>
-<kw name="Split String" owner="String">
-<msg time="2026-10-05T16:30:09.002183" level="INFO">@{parts} = [ 
-Pinging wh47.go-vip.net  | 192.0.66.51] with 32 bytes of data:
-Reply from 192.0.66.51: bytes=32 time=53ms TTL=59
-Reply from 192.0.66.51: bytes=32 time=47ms TTL=59
-Reply from 192.0.66.51: bytes=32 t...</msg>
-<var>@{parts}</var>
-<arg>${text}</arg>
-<arg>[</arg>
-<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2026-10-05T16:30:09.001968" elapsed="0.000284"/>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-10-09T17:39:45.595565" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-10-09T17:39:44.594504" elapsed="1.001363"/>
 </kw>
-<kw name="Split String" owner="String">
-<msg time="2026-10-05T16:30:09.002552" level="INFO">@{parts} = [ 192.0.66.51 |  with 32 bytes of data:
-Reply from 192.0.66.51: bytes=32 time=53ms TTL=59
-Reply from 192.0.66.51: bytes=32 time=47ms TTL=59
-Reply from 192.0.66.51: bytes=32 time=24ms TTL=59
-Reply from...</msg>
-<var>@{parts}</var>
-<arg>${parts}[1]</arg>
-<arg>]</arg>
-<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2026-10-05T16:30:09.002356" elapsed="0.000268"/>
-</kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2026-10-05T16:30:09.002962" level="INFO">${ip} = 192.0.66.51</msg>
-<var>${ip}</var>
-<arg>${parts}[0]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2026-10-05T16:30:09.002730" elapsed="0.000303"/>
-</kw>
-<kw name="Split String" owner="String">
-<msg time="2026-10-05T16:30:09.003323" level="INFO">@{parts} = [ 
-Pinging wh47.go-vip.net [192.0.66.51] with 32 bytes of data:
-Reply from 192.0.66.51: bytes=32 time=53ms TTL=59
-Reply from 192.0.66.51: bytes=32 time=47ms TTL=59
-Reply from 192.0.66.51: bytes=32 tim...</msg>
-<var>@{parts}</var>
-<arg>${text}</arg>
-<arg>Average</arg>
-<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2026-10-05T16:30:09.003136" elapsed="0.000253"/>
-</kw>
-<kw name="Split String" owner="String">
-<msg time="2026-10-05T16:30:09.003703" level="INFO">@{parts} = [   |  39ms ]</msg>
-<var>@{parts}</var>
-<arg>${parts}[1]</arg>
-<arg>=</arg>
-<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2026-10-05T16:30:09.003510" elapsed="0.000256"/>
-</kw>
-<kw name="Remove String" owner="String">
-<msg time="2026-10-05T16:30:09.004052" level="INFO">${average} =  39</msg>
-<var>${average}</var>
-<arg>${parts}[1]</arg>
-<arg>ms</arg>
-<doc>Removes all ``removables`` from the given ``string``.</doc>
-<status status="PASS" start="2026-10-05T16:30:09.003866" elapsed="0.000247"/>
-</kw>
-<kw name="Split String" owner="String">
-<msg time="2026-10-05T16:30:09.004366" level="INFO">@{parts} = [ 39 ]</msg>
-<var>@{parts}</var>
-<arg>${average}</arg>
-<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2026-10-05T16:30:09.004209" elapsed="0.000218"/>
-</kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2026-10-05T16:30:09.004750" level="INFO">${average} = 39</msg>
-<var>${average}</var>
-<arg>${parts}[0]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2026-10-05T16:30:09.004532" elapsed="0.000283"/>
-</kw>
-<kw name="Append To File" owner="OperatingSystem">
-<msg time="2026-10-05T16:30:09.005552" level="INFO" html="true">Appended to file '&lt;a href="file://E:\Profile\Web-Dev-Projects\Testing-2026\Robot Folder\ping_result.txt"&gt;E:\Profile\Web-Dev-Projects\Testing-2026\Robot Folder\ping_result.txt&lt;/a&gt;'.</msg>
-<arg>${result_file}</arg>
-<arg>${addresses}[${index}] - ${ip} - ${average} ms\n</arg>
-<doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2026-10-05T16:30:09.004908" elapsed="0.000813"/>
-</kw>
-<kw name="Run Keyword And Continue On Failure" owner="BuiltIn">
-<kw name="Should Be True" owner="BuiltIn">
-<arg>${average} &lt; 50</arg>
-<arg>Average ping for ${addresses}[${index}] must be below 50 ms (actual: ${average} ms).</arg>
-<doc>Fails if the given condition is not true.</doc>
-<status status="PASS" start="2026-10-05T16:30:09.006276" elapsed="0.000417"/>
-</kw>
-<arg>Should Be True</arg>
-<arg>${average} &lt; 50</arg>
-<arg>Average ping for ${addresses}[${index}] must be below 50 ms (actual: ${average} ms).</arg>
-<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
-<status status="PASS" start="2026-10-05T16:30:09.005883" elapsed="0.000903"/>
-</kw>
-<var name="${index}">0</var>
-<status status="PASS" start="2026-10-05T16:30:05.882078" elapsed="3.124770"/>
-</iter>
-<iter>
-<kw name="Run And Return Rc And Output" owner="OperatingSystem">
-<msg time="2026-10-05T16:30:09.017364" level="INFO">Running command 'ping www.iltalehti.fi 2&gt;&amp;1'.</msg>
-<msg time="2026-10-05T16:30:12.159781" level="INFO">${output} = (0, '\nPinging d4dgdwhncmjfe.cloudfront.net [13.249.8.80] with 32 bytes of data:\nReply from 13.249.8.80: bytes=32 time=45ms TTL=249\nReply from 13.249.8.80: bytes=32 time=28ms TTL=249\nReply from 13....</msg>
-<var>${output}</var>
-<arg>ping ${addresses}[${index}]</arg>
-<doc>_This keyword is considered deprecated. Use the
-[http://robotframework.org/robotframework/latest/libraries/Process.html|
-Process] library instead._</doc>
-<status status="PASS" start="2026-10-05T16:30:09.007191" elapsed="3.152770"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2026-10-05T16:30:12.160486" level="INFO">(0, '\nPinging d4dgdwhncmjfe.cloudfront.net [13.249.8.80] with 32 bytes of data:\nReply from 13.249.8.80: bytes=32 time=45ms TTL=249\nReply from 13.249.8.80: bytes=32 time=28ms TTL=249\nReply from 13.249.8.80: bytes=32 time=26ms TTL=249\nReply from 13.249.8.80: bytes=32 time=25ms TTL=249\n\nPing statistics for 13.249.8.80:\n    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),\nApproximate round trip times in milli-seconds:\n    Minimum = 25ms, Maximum = 45ms, Average = 31ms')</msg>
-<arg>${output}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2026-10-05T16:30:12.160143" elapsed="0.000461"/>
-</kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2026-10-05T16:30:12.161015" level="INFO">${text} = 
-Pinging d4dgdwhncmjfe.cloudfront.net [13.249.8.80] with 32 bytes of data:
-Reply from 13.249.8.80: bytes=32 time=45ms TTL=249
-Reply from 13.249.8.80: bytes=32 time=28ms TTL=249
-Reply from 13.249.8.80:...</msg>
-<var>${text}</var>
-<arg>${output}[1]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2026-10-05T16:30:12.160730" elapsed="0.000358"/>
-</kw>
-<kw name="Split String" owner="String">
-<msg time="2026-10-05T16:30:12.161464" level="INFO">@{parts} = [ 
-Pinging d4dgdwhncmjfe.cloudfront.net  | 13.249.8.80] with 32 bytes of data:
-Reply from 13.249.8.80: bytes=32 time=45ms TTL=249
-Reply from 13.249.8.80: bytes=32 time=28ms TTL=249
-Reply from 13.249.8...</msg>
-<var>@{parts}</var>
-<arg>${text}</arg>
-<arg>[</arg>
-<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2026-10-05T16:30:12.161203" elapsed="0.000362"/>
-</kw>
-<kw name="Split String" owner="String">
-<msg time="2026-10-05T16:30:12.161963" level="INFO">@{parts} = [ 13.249.8.80 |  with 32 bytes of data:
-Reply from 13.249.8.80: bytes=32 time=45ms TTL=249
-Reply from 13.249.8.80: bytes=32 time=28ms TTL=249
-Reply from 13.249.8.80: bytes=32 time=26ms TTL=249
-Reply f...</msg>
-<var>@{parts}</var>
-<arg>${parts}[1]</arg>
-<arg>]</arg>
-<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2026-10-05T16:30:12.161700" elapsed="0.000358"/>
-</kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2026-10-05T16:30:12.162424" level="INFO">${ip} = 13.249.8.80</msg>
-<var>${ip}</var>
-<arg>${parts}[0]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2026-10-05T16:30:12.162186" elapsed="0.000316"/>
-</kw>
-<kw name="Split String" owner="String">
-<msg time="2026-10-05T16:30:12.162786" level="INFO">@{parts} = [ 
-Pinging d4dgdwhncmjfe.cloudfront.net [13.249.8.80] with 32 bytes of data:
-Reply from 13.249.8.80: bytes=32 time=45ms TTL=249
-Reply from 13.249.8.80: bytes=32 time=28ms TTL=249
-Reply from 13.249.8.8...</msg>
-<var>@{parts}</var>
-<arg>${text}</arg>
-<arg>Average</arg>
-<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2026-10-05T16:30:12.162603" elapsed="0.000250"/>
-</kw>
-<kw name="Split String" owner="String">
-<msg time="2026-10-05T16:30:12.163140" level="INFO">@{parts} = [   |  31ms ]</msg>
-<var>@{parts}</var>
-<arg>${parts}[1]</arg>
-<arg>=</arg>
-<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2026-10-05T16:30:12.162950" elapsed="0.000252"/>
-</kw>
-<kw name="Remove String" owner="String">
-<msg time="2026-10-05T16:30:12.163469" level="INFO">${average} =  31</msg>
-<var>${average}</var>
-<arg>${parts}[1]</arg>
-<arg>ms</arg>
-<doc>Removes all ``removables`` from the given ``string``.</doc>
-<status status="PASS" start="2026-10-05T16:30:12.163304" elapsed="0.000227"/>
-</kw>
-<kw name="Split String" owner="String">
-<msg time="2026-10-05T16:30:12.163797" level="INFO">@{parts} = [ 31 ]</msg>
-<var>@{parts}</var>
-<arg>${average}</arg>
-<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2026-10-05T16:30:12.163633" elapsed="0.000233"/>
-</kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2026-10-05T16:30:12.164179" level="INFO">${average} = 31</msg>
-<var>${average}</var>
-<arg>${parts}[0]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2026-10-05T16:30:12.163959" elapsed="0.000282"/>
-</kw>
-<kw name="Append To File" owner="OperatingSystem">
-<msg time="2026-10-05T16:30:12.165058" level="INFO" html="true">Appended to file '&lt;a href="file://E:\Profile\Web-Dev-Projects\Testing-2026\Robot Folder\ping_result.txt"&gt;E:\Profile\Web-Dev-Projects\Testing-2026\Robot Folder\ping_result.txt&lt;/a&gt;'.</msg>
-<arg>${result_file}</arg>
-<arg>${addresses}[${index}] - ${ip} - ${average} ms\n</arg>
-<doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2026-10-05T16:30:12.164345" elapsed="0.000936"/>
-</kw>
-<kw name="Run Keyword And Continue On Failure" owner="BuiltIn">
-<kw name="Should Be True" owner="BuiltIn">
-<arg>${average} &lt; 50</arg>
-<arg>Average ping for ${addresses}[${index}] must be below 50 ms (actual: ${average} ms).</arg>
-<doc>Fails if the given condition is not true.</doc>
-<status status="PASS" start="2026-10-05T16:30:12.165852" elapsed="0.000486"/>
-</kw>
-<arg>Should Be True</arg>
-<arg>${average} &lt; 50</arg>
-<arg>Average ping for ${addresses}[${index}] must be below 50 ms (actual: ${average} ms).</arg>
-<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
-<status status="PASS" start="2026-10-05T16:30:12.165457" elapsed="0.000966"/>
-</kw>
-<var name="${index}">1</var>
-<status status="PASS" start="2026-10-05T16:30:09.007041" elapsed="3.159442"/>
-</iter>
-<iter>
-<kw name="Run And Return Rc And Output" owner="OperatingSystem">
-<msg time="2026-10-05T16:30:12.177348" level="INFO">Running command 'ping best.aliexpress.com 2&gt;&amp;1'.</msg>
-<msg time="2026-10-05T16:30:15.316261" level="INFO">${output} = (0, '\nPinging e230598.b.akamaiedge.net [2.22.145.84] with 32 bytes of data:\nReply from 2.22.145.84: bytes=32 time=27ms TTL=56\nReply from 2.22.145.84: bytes=32 time=26ms TTL=56\nReply from 2.22.145....</msg>
-<var>${output}</var>
-<arg>ping ${addresses}[${index}]</arg>
-<doc>_This keyword is considered deprecated. Use the
-[http://robotframework.org/robotframework/latest/libraries/Process.html|
-Process] library instead._</doc>
-<status status="PASS" start="2026-10-05T16:30:12.166770" elapsed="3.149663"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2026-10-05T16:30:15.316919" level="INFO">(0, '\nPinging e230598.b.akamaiedge.net [2.22.145.84] with 32 bytes of data:\nReply from 2.22.145.84: bytes=32 time=27ms TTL=56\nReply from 2.22.145.84: bytes=32 time=26ms TTL=56\nReply from 2.22.145.84: bytes=32 time=34ms TTL=56\nReply from 2.22.145.84: bytes=32 time=38ms TTL=56\n\nPing statistics for 2.22.145.84:\n    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),\nApproximate round trip times in milli-seconds:\n    Minimum = 26ms, Maximum = 38ms, Average = 31ms')</msg>
-<arg>${output}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2026-10-05T16:30:15.316624" elapsed="0.000389"/>
-</kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2026-10-05T16:30:15.317362" level="INFO">${text} = 
-Pinging e230598.b.akamaiedge.net [2.22.145.84] with 32 bytes of data:
-Reply from 2.22.145.84: bytes=32 time=27ms TTL=56
-Reply from 2.22.145.84: bytes=32 time=26ms TTL=56
-Reply from 2.22.145.84: bytes...</msg>
-<var>${text}</var>
-<arg>${output}[1]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2026-10-05T16:30:15.317128" elapsed="0.000304"/>
-</kw>
-<kw name="Split String" owner="String">
-<msg time="2026-10-05T16:30:15.317720" level="INFO">@{parts} = [ 
-Pinging e230598.b.akamaiedge.net  | 2.22.145.84] with 32 bytes of data:
-Reply from 2.22.145.84: bytes=32 time=27ms TTL=56
-Reply from 2.22.145.84: bytes=32 time=26ms TTL=56
-Reply from 2.22.145.84: b...</msg>
-<var>@{parts}</var>
-<arg>${text}</arg>
-<arg>[</arg>
-<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2026-10-05T16:30:15.317533" elapsed="0.000253"/>
-</kw>
-<kw name="Split String" owner="String">
-<msg time="2026-10-05T16:30:15.318054" level="INFO">@{parts} = [ 2.22.145.84 |  with 32 bytes of data:
-Reply from 2.22.145.84: bytes=32 time=27ms TTL=56
-Reply from 2.22.145.84: bytes=32 time=26ms TTL=56
-Reply from 2.22.145.84: bytes=32 time=34ms TTL=56
-Reply from...</msg>
-<var>@{parts}</var>
-<arg>${parts}[1]</arg>
-<arg>]</arg>
-<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2026-10-05T16:30:15.317883" elapsed="0.000236"/>
-</kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2026-10-05T16:30:15.318430" level="INFO">${ip} = 2.22.145.84</msg>
-<var>${ip}</var>
-<arg>${parts}[0]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2026-10-05T16:30:15.318214" elapsed="0.000278"/>
-</kw>
-<kw name="Split String" owner="String">
-<msg time="2026-10-05T16:30:15.318750" level="INFO">@{parts} = [ 
-Pinging e230598.b.akamaiedge.net [2.22.145.84] with 32 bytes of data:
-Reply from 2.22.145.84: bytes=32 time=27ms TTL=56
-Reply from 2.22.145.84: bytes=32 time=26ms TTL=56
-Reply from 2.22.145.84: byt...</msg>
-<var>@{parts}</var>
-<arg>${text}</arg>
-<arg>Average</arg>
-<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2026-10-05T16:30:15.318584" elapsed="0.000230"/>
-</kw>
-<kw name="Split String" owner="String">
-<msg time="2026-10-05T16:30:15.319093" level="INFO">@{parts} = [   |  31ms ]</msg>
-<var>@{parts}</var>
-<arg>${parts}[1]</arg>
-<arg>=</arg>
-<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2026-10-05T16:30:15.318906" elapsed="0.000245"/>
-</kw>
-<kw name="Remove String" owner="String">
-<msg time="2026-10-05T16:30:15.319405" level="INFO">${average} =  31</msg>
-<var>${average}</var>
-<arg>${parts}[1]</arg>
-<arg>ms</arg>
-<doc>Removes all ``removables`` from the given ``string``.</doc>
-<status status="PASS" start="2026-10-05T16:30:15.319245" elapsed="0.000215"/>
-</kw>
-<kw name="Split String" owner="String">
-<msg time="2026-10-05T16:30:15.319778" level="INFO">@{parts} = [ 31 ]</msg>
-<var>@{parts}</var>
-<arg>${average}</arg>
-<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2026-10-05T16:30:15.319600" elapsed="0.000247"/>
-</kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2026-10-05T16:30:15.320162" level="INFO">${average} = 31</msg>
-<var>${average}</var>
-<arg>${parts}[0]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2026-10-05T16:30:15.319942" elapsed="0.000279"/>
-</kw>
-<kw name="Append To File" owner="OperatingSystem">
-<msg time="2026-10-05T16:30:15.320845" level="INFO" html="true">Appended to file '&lt;a href="file://E:\Profile\Web-Dev-Projects\Testing-2026\Robot Folder\ping_result.txt"&gt;E:\Profile\Web-Dev-Projects\Testing-2026\Robot Folder\ping_result.txt&lt;/a&gt;'.</msg>
-<arg>${result_file}</arg>
-<arg>${addresses}[${index}] - ${ip} - ${average} ms\n</arg>
-<doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2026-10-05T16:30:15.320313" elapsed="0.000652"/>
-</kw>
-<kw name="Run Keyword And Continue On Failure" owner="BuiltIn">
-<kw name="Should Be True" owner="BuiltIn">
-<arg>${average} &lt; 50</arg>
-<arg>Average ping for ${addresses}[${index}] must be below 50 ms (actual: ${average} ms).</arg>
-<doc>Fails if the given condition is not true.</doc>
-<status status="PASS" start="2026-10-05T16:30:15.321352" elapsed="0.000317"/>
-</kw>
-<arg>Should Be True</arg>
-<arg>${average} &lt; 50</arg>
-<arg>Average ping for ${addresses}[${index}] must be below 50 ms (actual: ${average} ms).</arg>
-<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
-<status status="PASS" start="2026-10-05T16:30:15.321088" elapsed="0.000655"/>
-</kw>
-<var name="${index}">2</var>
-<status status="PASS" start="2026-10-05T16:30:12.166660" elapsed="3.155136"/>
-</iter>
-<var>${index}</var>
-<value>${count}</value>
-<status status="PASS" start="2026-10-05T16:30:05.881766" elapsed="9.440105"/>
-</for>
-<status status="PASS" start="2026-10-05T16:30:05.876216" elapsed="9.446026"/>
+<status status="PASS" start="2026-10-09T17:39:44.162718" elapsed="1.433822"/>
 </test>
-<status status="PASS" start="2026-10-05T16:30:05.821465" elapsed="9.501709"/>
+<test id="s1-t10" name="Check the flight price" line="56">
+<kw name="Remove String" owner="String">
+<msg time="2026-10-09T17:39:45.598592" level="INFO">${expected_price} = 472.56</msg>
+<var>${expected_price}</var>
+<arg>${flight_price}</arg>
+<arg>$</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2026-10-09T17:39:45.598037" elapsed="0.000758"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:39:45.613173" level="INFO">${text} = Price: 400</msg>
+<var>${text}</var>
+<arg>xpath://p[starts-with(normalize-space(.), 'Price:')]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-10-09T17:39:45.599273" elapsed="0.014185"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2026-10-09T17:39:45.614785" level="INFO">${text} =  400</msg>
+<var>${text}</var>
+<arg>${text}</arg>
+<arg>Price:</arg>
+<arg>$</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2026-10-09T17:39:45.614120" elapsed="0.000850"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2026-10-09T17:39:45.616023" level="INFO">@{parts} = [ 400 ]</msg>
+<var>@{parts}</var>
+<arg>${text}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2026-10-09T17:39:45.615528" elapsed="0.000646"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<msg time="2026-10-09T17:39:45.617604" level="FAIL">400 != 472.56</msg>
+<arg>${parts}[0]</arg>
+<arg>${expected_price}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="FAIL" start="2026-10-09T17:39:45.616708" elapsed="0.002107">400 != 472.56</status>
+</kw>
+<status status="FAIL" start="2026-10-09T17:39:45.597366" elapsed="0.022067">400 != 472.56</status>
+</test>
+<test id="s1-t11" name="Check the airline" line="63">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:39:45.635236" level="INFO">${text} = Airline: United</msg>
+<var>${text}</var>
+<arg>xpath://p[starts-with(normalize-space(.), 'Airline:')]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-10-09T17:39:45.621264" elapsed="0.014277"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2026-10-09T17:39:45.636965" level="FAIL">Setting variable '@{text}' failed: Expected list-like value, got string.</msg>
+<var>@{text}</var>
+<arg>${text}</arg>
+<arg>Airline:</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="FAIL" start="2026-10-09T17:39:45.636201" elapsed="0.000972">Setting variable '@{text}' failed: Expected list-like value, got string.</status>
+</kw>
+<kw name="Split String" owner="String">
+<var>@{parts}</var>
+<arg>${text}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="NOT RUN" start="2026-10-09T17:39:45.637772" elapsed="0.000180"/>
+</kw>
+<kw name="Split String" owner="String">
+<var>@{expected_parts}</var>
+<arg>${flight_airline}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="NOT RUN" start="2026-10-09T17:39:45.638497" elapsed="0.000180"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${parts}</arg>
+<arg>${expected_parts}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" start="2026-10-09T17:39:45.639218" elapsed="0.000179"/>
+</kw>
+<status status="FAIL" start="2026-10-09T17:39:45.620586" elapsed="0.019425">Setting variable '@{text}' failed: Expected list-like value, got string.</status>
+</test>
+<status status="FAIL" start="2026-10-09T17:39:39.568255" elapsed="6.073188"/>
 </suite>
 <statistics>
 <total>
-<stat pass="2" fail="0" skip="0">All Tests</stat>
+<stat pass="9" fail="2" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat name="Ping Assignment" id="s1" pass="2" fail="0" skip="0">Ping Assignment</stat>
+<stat name="Flight Booking" id="s1" pass="9" fail="2" skip="0">Flight Booking</stat>
 </suite>
 </statistics>
 <errors>

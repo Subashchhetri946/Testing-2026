@@ -5,7 +5,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="Robot Framework 7.4.2 (Python 3.14.7 on win32)" name="Generator">
+<meta content="Robot Framework 7.3.2 (Python 3.13.7 on win32)" name="Generator">
 <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKcAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAqAAAAAAAAAAAAAAAAAAAALIAAAD/AAAA4AAAANwAAADcAAAA3AAAANwAAADcAAAA3AAAANwAAADcAAAA4AAAAP8AAACxAAAAAAAAAKYAAAD/AAAAuwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC/AAAA/wAAAKkAAAD6AAAAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN8AAAD/AAAA+gAAAMMAAAAAAAAAAgAAAGsAAABrAAAAawAAAGsAAABrAAAAawAAAGsAAABrAAAADAAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAAIsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAANEAAAAAAAAA2gAAAP8AAAD6AAAAwwAAAAAAAAAAAAAAMgAAADIAAAAyAAAAMgAAADIAAAAyAAAAMgAAADIAAAAFAAAAAAAAANoAAAD/AAAA+gAAAMMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAADwAAAB8AAAAAAAAAGAAAABcAAAAAAAAAH8AAABKAAAAAAAAAAAAAAAAAAAA2gAAAP8AAAD6AAAAwwAAAAAAAADCAAAA/wAAACkAAADqAAAA4QAAAAAAAAD7AAAA/wAAALAAAAAGAAAAAAAAANoAAAD/AAAA+gAAAMMAAAAAAAAAIwAAAP4AAAD/AAAA/wAAAGAAAAAAAAAAAAAAAMkAAAD/AAAAigAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAAAAAAAAIAAAAcAAAABkAAAAAAAAAAAAAAAAAAAAAAAAAEgAAAAAAAAAAAAAA2gAAAP8AAAD7AAAAywAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN4AAAD/AAAAqwAAAP8AAACvAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALIAAAD/AAAAsgAAAAAAAAC5AAAA/wAAAMoAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMkAAAD/AAAAvAAAAAAAAAAAAAAAAAAAAKwAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAArQAAAAAAAAAAwAMAAIABAAAf+AAAP/wAAD/8AAAgBAAAP/wAAD/8AAA//AAAJIwAADHEAAA//AAAP/wAAB/4AACAAQAAwAMAAA==">
 <style media="all">
 :root {
@@ -116,16 +116,15 @@ select {
 #header {
     width: 65em;
     height: 3em;
-    margin: 1em 0 0 0;
+    margin: 20px 0 6px 0;
 }
 h1 {
     float: left;
-    margin: 0 0 1em 0;
+    margin: 0 0 0.5em 0;
     width: 75%;
 }
 h2 {
     clear: left;
-    margin: 1.5em 0 0.5em 0;
 }
 #generated {
     float: right;
@@ -169,13 +168,7 @@ h2 {
     background-color: var(--primary-color);
     border-radius: 3px;
 }
-/* https://stackoverflow.com/questions/75238633 */
-@supports (-moz-appearance: none) {
-    .label {
-        padding-top: 4px;
-    }
-}
-.label.debug, .label.trace, .label.error {
+.label.debug, .label.trace, .label.error, .label.keyword {
     letter-spacing: 0;
 }
 .label.pass, .label.fail, .label.error, .label.skip, .label.warn {
@@ -362,6 +355,19 @@ th.stats-col-graph:hover {
 [data-theme="light"] .dark-mode-icon {
     display: block;
 }
+@keyframes highlight {
+    0% {
+        background: var(--primary-color)
+    }
+    100% {
+        background: var(--target-color);
+    }
+}
+:target {
+    background: var(--target-color);
+    transition: background 0.3s;
+    animation: highlight 4s;
+}
 </style>
 <style media="all">
 /* Icons are from Open Iconic <https://useiconic.com/open/>.
@@ -378,43 +384,36 @@ th.stats-col-graph:hover {
     --elapsed-color: #999;
 }
 /* Containers */
-.suite, .test, #errors, #errors .messages {
+.suite, .test, #errors {
     border-color: #ccc; /* Fallback value */
     border-color: var(--secondary-color);
     border-width: 1px;
     border-style: solid;
-    padding: 5px;
-    margin-top: 5px;
+    padding: 0.3em 0.2em;
+    margin: 0.2em 0;
 }
 .test {
     border-style: dashed;
 }
-.messages {
+#errors, .messages {
     width: 100%;
     border-spacing: 0;
-    padding: 0 5px;
 }
 .children {
     display: none;
-    margin-left: 18px;
-    margin-top: 2px;
+    margin-left: 1.4em;
 }
-#errors .children {
-    margin-left: 22px;
+.suite, .test, .keyword {
+    margin-left: -0.2em;
 }
-.suite, .test {
-    margin-left: -5px;
-}
-#s1, #errors {
-    margin: 0;
+#s1, .suite > .children > .keyword {
+    margin-left: 0;
 }
 /* Suite, test and kw headers */
 .element-header {
-    display: flex;
-    align-items: center;
-    padding: 2px;
     border: 1px solid transparent;
     border-radius: 2px;
+    position: relative;
 }
 .element-header:hover {
     cursor: pointer;
@@ -424,15 +423,17 @@ th.stats-col-graph:hover {
     border-color: var(--secondary-color);
 }
 .element-header-toggle {
-    margin: 0 4px 0 2px;
-    height: 11px;
-    width: 11px;
-    min-width: 11px;
-    background-size: 6px 6px;
+    position: absolute;
+    left: 3px;
+    top: 5px;
     background-repeat: no-repeat;
     background-position: center;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAQAAABKxSfDAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfeCR0JChSkZz20AAAAGklEQVQI12NgQAKMDKzInP8IDhOqMk4G7AAANQwBE427PYUAAAAASUVORK5CYII=);
     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHZpZXdCb3g9IjAgMCA4IDgiPgogIDxwYXRoIGQ9Ik0wIDB2Mmg4di0yaC04eiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAzKSIgLz4KPC9zdmc+), none;
     filter: var(--icon-filter);
+    height: 10px;
+    width: 10px;
+    background-size: 6px 6px;
     border-color: #ccc; /* Fallback value */
     border-color: var(--icon-highlight);
     border-width: 1px;
@@ -440,59 +441,67 @@ th.stats-col-graph:hover {
     border-radius: 2px;
 }
 .closed > .element-header-toggle {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAQAAABKxSfDAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfeCR0JCDHdVYtxAAAAM0lEQVQI103MMQqAMBQFwVHyITaB3P+W1sKzSBC3mW6hRFw0pUB5DvF1bu9FN0RM3X/wAk98CUnvFTakAAAAAElFTkSuQmCC);
     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHZpZXdCb3g9IjAgMCA4IDgiPgogIDxwYXRoIGQ9Ik0zIDB2M2gtM3YyaDN2M2gydi0zaDN2LTJoLTN2LTNoLTJ6IiAvPgo8L3N2Zz4=), none;
 }
 .element-header:hover > .element-header-toggle {
     background-color: #ccc; /* Fallback value */
     background-color: var(--icon-highlight);
 }
-.element-header-menu:hover ~ .element-header-toggle {
+.element-header-right:hover ~ .element-header-toggle {
     background-color: transparent;
 }
-.element-header-menu {
-    margin: 0 2px 0 4px;
+.element-header-left {
+    padding: 3px 80px 3px 20px;
+}
+.element-header-right {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 3px;
     cursor: default;
 }
-.name, .arg, .assign {
-    margin-left: 7px;
-    white-space: pre-wrap;
+.element-header .label {
+    margin-right: 0.5em;
 }
 .name {
     font-weight: bold;
+    white-space: pre-wrap;
+}
+.arg, .assign {
+    white-space: pre-wrap;
 }
 .elapsed {
-    margin-left: auto;
-    padding-left: 0.5em;
+    float: right;
     color: #666; /* Fallback value */
     color: var(--elapsed-color);
-    font-size: 0.9em;
-}
-/* https://stackoverflow.com/questions/75238633 */
-@supports (-moz-appearance: none) {
-    .name, .arg, .assign, .elapsed {
-        padding-top: 3px;
-    }
+    padding-left: 1em;
 }
 .link {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAHlJREFUGJVtzrEJwmAQBtCn6ASuIKTIBhY2gmghBiJYB1udwk10B8FJbKMBcQFbtbkfJHrVwfu+4/idJR64Y9H7E3higj5O3S8Y44ApLnjhnXCNGhV2yNGggDJwiC02gavUbpDFvscRo4QdXOMKDHBufz3HLYKzNn4AbSkV3fncGQYAAAAASUVORK5CYII=);
     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHZpZXdCb3g9IjAgMCA4IDgiPgogIDxwYXRoIGQ9Ik01Ljg4LjAzYy0uMTguMDEtLjM2LjAzLS41My4wOS0uMjcuMS0uNTMuMjUtLjc1LjQ3YS41LjUgMCAxIDAgLjY5LjY5Yy4xMS0uMTEuMjQtLjE3LjM4LS4yMi4zNS0uMTIuNzgtLjA3IDEuMDYuMjIuMzkuMzkuMzkgMS4wNCAwIDEuNDRsLTEuNSAxLjVjLS40NC40NC0uOC40OC0xLjA2LjQ3LS4yNi0uMDEtLjQxLS4xMy0uNDEtLjEzYS41LjUgMCAxIDAtLjUuODhzLjM0LjIyLjg0LjI1Yy41LjAzIDEuMi0uMTYgMS44MS0uNzhsMS41LTEuNWMuNzgtLjc4Ljc4LTIuMDQgMC0yLjgxLS4yOC0uMjgtLjYxLS40NS0uOTctLjUzLS4xOC0uMDQtLjM4LS4wNC0uNTYtLjAzem0tMiAyLjMxYy0uNS0uMDItMS4xOS4xNS0xLjc4Ljc1bC0xLjUgMS41Yy0uNzguNzgtLjc4IDIuMDQgMCAyLjgxLjU2LjU2IDEuMzYuNzIgMi4wNi40Ny4yNy0uMS41My0uMjUuNzUtLjQ3YS41LjUgMCAxIDAtLjY5LS42OWMtLjExLjExLS4yNC4xNy0uMzguMjItLjM1LjEyLS43OC4wNy0xLjA2LS4yMi0uMzktLjM5LS4zOS0xLjA0IDAtMS40NGwxLjUtMS41Yy40LS40Ljc1LS40NSAxLjAzLS40NC4yOC4wMS40Ny4wOS40Ny4wOWEuNS41IDAgMSAwIC40NC0uODhzLS4zNC0uMi0uODQtLjIyeiIKICAvPgo8L3N2Zz4=), none;
+    filter: var(--icon-filter);
 }
 .expand {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAADtJREFUGJVjYCACKDAwMByA0ljFDjAwMPxnYGB4ABVQgLL/Q+VQBB6gseGmIivCkERXhFUSWRFOSawAAEl7E3uv1iMcAAAAAElFTkSuQmCC);
     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHZpZXdCb3g9IjAgMCA4IDgiPgogIDxwYXRoIGQ9Ik0xLjUgMGwtMS41IDEuNSA0IDQgNC00LTEuNS0xLjUtMi41IDIuNS0yLjUtMi41eiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAxKSIgLz4KPC9zdmc+), none;
+    filter: var(--icon-filter);
 }
 .collapse {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAC5JREFUGJVjYCARNEAxTsn/UIyhCFkSQxG6ThQ+C5IpjWhG1yNb4YDFTdjEMAEACi8Q++9Y9TAAAAAASUVORK5CYII=);
     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHZpZXdCb3g9IjAgMCA4IDgiPgogIDxwYXRoIGQ9Ik00IDBsLTQgNCAxLjUgMS41IDIuNS0yLjUgMi41IDIuNSAxLjUtMS41LTQtNHoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgMSkiIC8+Cjwvc3ZnPg==), none;
+    filter: var(--icon-filter);
 }
 .expand, .collapse, .link {
     float: left;
     display: block;
     visibility: hidden;
-    margin: 0 3px;
+    margin: 0 4px;
     height: 14px;
     width: 14px;
     background-size: 8px 8px;
     background-repeat: no-repeat;
     background-position: center;
-    filter: var(--icon-filter);
     border-color: #ccc; /* Fallback value */
     border-color: var(--icon-highlight);
     border-width: 1px;
@@ -510,18 +519,23 @@ th.stats-col-graph:hover {
     background-color: var(--icon-highlight);
 }
 /* Messages and errors */
-.message-row {
-    height: 20px;
-}
 .messages .time, .messages .message {
     font-family: monospace;
     font-size: 1.1em;
 }
-.messages .time {
+#errors .message {
+    font-family: monospace;
+    font-size: 1.2em;
+}
+.message-row {
+    height: 20px;
+}
+.time {
     width: 7.5em;
 }
-#errors .time {
-    width: 12.5em;
+.error-time {
+    width: 11em;
+    font-size: 0.9em;
     white-space: nowrap;
 }
 .level {
@@ -541,6 +555,7 @@ th.stats-col-graph:hover {
     background-position: center;
 }
 .message-row:hover .select-message div {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAQAAAD8fJRsAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfeCR0MOzhWKZQOAAAASUlEQVQY032PsRHAIAwDX9BkicD+W8UMEqegAQJWKZ/+3sLZJhFGQEZzNaIa4ibh66En867VNaIeoP5WppNuIGoAlOm3g5VC1AdYeQv1BZPRSgAAAABJRU5ErkJggg==);
     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHZpZXdCb3g9IjAgMCA4IDgiPgogIDxwYXRoIGQ9Ik0wIDB2MWg4di0xaC04em0wIDJ2MWg2di0xaC02em0wIDJ2MWg4di0xaC04em0wIDJ2MWg2di0xaC02eiIgLz4KPC9zdmc+), none;
     filter: var(--icon-filter);
     border-color: #ccc; /* Fallback value */
@@ -562,6 +577,7 @@ th.stats-col-graph:hover {
 .debug-message {
     display: table;
 }
+/* Metadata */
 .metadata {
     width: 100%;
     border-spacing: 0.2em;
@@ -580,20 +596,6 @@ th.stats-col-graph:hover {
 /* Custom styles for statistics */
 #total-stats tr:hover, #tag-stats tr:hover {
     cursor: default;
-}
-/* Target highlight */
-@keyframes highlight {
-    0% {
-        background: var(--primary-color)
-    }
-    100% {
-        background: var(--target-color);
-    }
-}
-:target {
-    background: var(--target-color);
-    transition: background 0.3s;
-    animation: highlight 4s;
 }
 </style>
 <style media="print">
@@ -739,8 +741,7 @@ function toggleElement(elementId, childrenNames) {
     children.toggle(100, '', function () {
         element.children('.element-header').toggleClass('closed');
     });
-    if (childrenNames)
-        populateChildren(elementId, children, childrenNames);
+    populateChildren(elementId, children, childrenNames);
 }
 function populateChildren(elementId, childElement, childrenNames) {
     if (!childElement.hasClass('populated')) {
@@ -1143,7 +1144,7 @@ window.model = (function () {
         kw.type = data.type;
         kw.template = 'keywordTemplate';
         kw.arguments = data.args;
-        kw.assign = data.assign;
+        kw.assign = data.assign + (data.assign ? ' =  ' : '');
         kw.tags = data.tags;
         kw.timeout = data.timeout;
         kw.populateKeywords = createIterablePopulator('Keyword');
@@ -1882,7 +1883,7 @@ function addStatistics() {
         '<th class="stats-col-elapsed">Elapsed</th>' +
         '<th class="stats-col-graph">Pass / Fail / Skip</th>';
     var statTable =
-        '<h2>Statistics</h2>' +
+        '<h2>{Test} Statistics</h2>' +
         '<table class="statistics" id="total-stats"><thead><tr>' +
         '<th class="stats-col-name">Total Statistics</th>' + statHeaders +
         '</tr></thead></table>' +
@@ -1892,7 +1893,7 @@ function addStatistics() {
         '<table class="statistics" id="suite-stats"><thead><tr>' +
         '<th class="stats-col-name">Statistics by Suite</th>' + statHeaders +
         '</tr></thead></table>';
-    $(statTable).appendTo('#statistics-container');
+    $(testOrTask(statTable)).appendTo('#statistics-container');
     util.map(['total', 'tag', 'suite'], addStatTable);
     addTooltipsToElapsedTimes();
     enableStatisticsSorter();
@@ -2073,25 +2074,25 @@ storage = function () {
 window.output = {};
 </script>
 <script type="text/javascript">
-window.output["suite"] = [1,2,3,0,[],[1,0,130],[[4,5,6,0,[],[1,30,94],[[7,8,9,0,[],[1,37,83],[],[[10,0,0,[],[1,82,35],[[0,11,12,0,13,14,0,0,[1,115,1],[[115,2,15]]],[0,16,12,0,17,14,0,0,[1,116,1],[[117,2,18]]]]]],[],[1,1,0,0]]],[],[],[1,1,0,0]]],[],[],[1,1,0,0]];
+window.output["suite"] = [1,2,3,0,[],[0,0,6182],[],[[4,0,0,[],[1,590,2879],[[0,5,6,0,7,8,0,0,[1,590,1858],[[591,2,9]]],[0,10,6,0,11,0,0,0,[1,2449,18],[]],[0,12,13,0,14,15,0,0,[1,2467,1001],[[3468,2,16]]]]],[17,0,0,[],[1,3469,86],[[0,18,6,0,19,20,0,0,[1,3470,72],[[3542,2,21]]],[0,22,6,0,23,24,0,0,[1,3542,13],[[3555,2,25]]]]],[26,0,0,[],[1,3556,49],[[0,27,6,0,28,29,0,0,[1,3556,48],[[3556,2,30]]]]],[31,0,0,[],[1,3605,41],[[0,27,6,0,28,32,0,0,[1,3605,41],[[3605,2,33]]]]],[34,0,0,[],[1,3646,12],[[0,18,6,0,19,35,0,0,[1,3647,11],[[3658,2,36]]]]],[37,0,0,[],[1,3659,1048],[[0,38,6,0,39,40,0,0,[1,3660,45],[[3660,2,41]]],[0,12,13,0,14,15,0,0,[1,3705,1001],[[4706,2,16]]]]],[42,0,0,[],[1,4708,16],[[0,22,6,0,23,43,0,0,[1,4709,15],[[4724,2,44]]]]],[45,0,0,[],[1,4725,14],[[0,18,6,0,19,46,0,0,[1,4726,13],[[4739,2,47]]]]],[48,0,0,[],[1,4740,1421],[[0,49,6,0,50,51,52,0,[1,4740,16],[[4756,2,53]]],[0,49,6,0,50,54,55,0,[1,4756,17],[[4773,2,56]]],[0,49,6,0,50,57,58,0,[1,4774,17],[[4791,2,59]]],[0,60,13,0,61,62,0,0,[1,4791,0],[[4792,2,63]]],[0,60,13,0,61,64,0,0,[1,4792,0],[[4792,2,65]]],[0,60,13,0,61,66,0,0,[1,4793,0],[[4793,2,67]]],[0,68,13,0,69,70,0,0,[1,4793,0],[[4794,2,71]]],[0,38,6,0,39,46,0,0,[1,4794,364],[[4794,2,72]]],[0,12,13,0,14,15,0,0,[1,5159,1001],[[6159,2,16]]]]],[73,0,0,[],[0,6161,20,74],[[0,75,76,0,77,78,79,0,[1,6162,0],[[6162,2,80]]],[0,49,6,0,50,81,82,0,[1,6162,16],[[6178,2,83]]],[0,75,76,0,77,84,82,0,[1,6178,0],[[6178,2,85]]],[0,86,76,0,87,82,88,0,[1,6179,0],[[6179,2,89]]],[0,90,13,0,91,92,0,0,[0,6180,1],[[6180,5,74]]]]]],[],[10,9,1,0]];
 </script>
 <script type="text/javascript">
 window.output["strings"] = [];
 </script>
 <script type="text/javascript">
-window.output["strings"] = window.output["strings"].concat(["*","*Testing-2026","*E:\\Profile\\Web-Dev-Projects\\Testing-2026","*..","*Robot Folder","*E:\\Profile\\Web-Dev-Projects\\Testing-2026\\Robot Folder","*../Robot%20Folder","*Demo","*E:\\Profile\\Web-Dev-Projects\\Testing-2026\\Robot Folder\\demo.robot","*../Robot%20Folder/demo.robot","*Make a new directory","*Create Directory","*OperatingSystem","*<p>Creates the specified directory.\x3c/p>","*E:/Profile/Web-Dev-Projects/Testing-2026/testing","eNpzySxKTS7JL6pUULdJVMgoSk2zVUrLzEm10td3tYoJKMoHcWLCU5N0XVLLdIH8LKDy4piQ1OKSzLx0XSMDI7OYEghHyY5UHTb6iXbqCok5RamJKZUKqRWZxSXFegCoAjNf","*Directory Should Exist","*<p>Fails unless the given path points to an existing directory.\x3c/p>","eNpzySxKTS7JL6pUULdJVMgoSk2zVUrLzEm10td3tYoJKMoHcWLCU5N0XVLLdIH8LKDy4piQ1OKSzLx0XSMDI7OYEghHyY5UHTb6iXbqCqkVmcUlxXoAGAowXQ=="]);
+window.output["strings"] = window.output["strings"].concat(["*","*Flight Booking","*E:\\Profile\\Web-Dev-Projects\\Testing-2026\\Robot Folder\\flight_booking.robot","*../Robot%20Folder/flight_booking.robot","*Open the travel website","*Open Browser","*SeleniumLibrary","*<p>Opens a new browser instance to the optional <code>url\x3c/code>.\x3c/p>","*${url}    ${browser}    options=add_argument(\"--log-level=3\")","*Opening browser 'Chrome' to base url '<a href=\"http://blazedemo.com/\">http://blazedemo.com/\x3c/a>'.","*Maximize Browser Window","*<p>Maximizes current browser window.\x3c/p>","*Sleep","*BuiltIn","*<p>Pauses the test executed for the given time.\x3c/p>","*1s","*Slept 1 second.","*Check the welcome message","*Element Should Be Visible","*<p>Verifies that the element identified by <code>locator\x3c/code> is visible.\x3c/p>","*<a href=\"xpath://h1\">xpath://h1\x3c/a>","*Element '<a href=\"xpath://h1\">xpath://h1\x3c/a>' is displayed.","*Element Should Contain","*<p>Verifies that element <code>locator\x3c/code> contains text <code>expected\x3c/code>.\x3c/p>","*<a href=\"xpath://h1\">xpath://h1\x3c/a>    Welcome to the Simple Travel Agency!","*Element '<a href=\"xpath://h1\">xpath://h1\x3c/a>' contains text 'Welcome to the Simple Travel Agency!'.","*Choose Boston","*Select From List By Value","*<p>Selects options from selection list <code>locator\x3c/code> by <code>values\x3c/code>.\x3c/p>","*name:fromPort    ${departure}","*Selecting options from selection list 'name:fromPort' by value Boston.","*Choose Cairo","*name:toPort    ${destination}","*Selecting options from selection list 'name:toPort' by value Cairo.","*Check the Find Flights button","*<a href=\"xpath://input[@value='Find\">xpath://input[@value='Find\x3c/a> Flights' and not(@disabled)]","*Element '<a href=\"xpath://input[@value='Find\">xpath://input[@value='Find\x3c/a> Flights' and not(@disabled)]' is displayed.","*Search for flights","*Click Button","*<p>Clicks the button identified by <code>locator\x3c/code>.\x3c/p>","*<a href=\"xpath://input[@value='Find\">xpath://input[@value='Find\x3c/a> Flights']","*Clicking button '<a href=\"xpath://input[@value='Find\">xpath://input[@value='Find\x3c/a> Flights']'.","*Check the flight route","*<a href=\"xpath://h3\">xpath://h3\x3c/a>    Flights from ${departure} to ${destination}:","*Element '<a href=\"xpath://h3\">xpath://h3\x3c/a>' contains text 'Flights from Boston to Cairo:'.","*Check that a flight is available","eNqzSVTIKEpNs1WqKEgsybDS1y9JTMpJ1S9Jyk+p1C8pijaM1S9JAZGZeQWlJUp2RCmz0U+0AwBvgB7y","*Element '<a href=\"xpath://table/tbody/tr[1]/td[1]/input\">xpath://table/tbody/tr[1]/td[1]/input\x3c/a>' is displayed.","*Save the flight details and choose it","*Get Text","*<p>Returns the text value of the element identified by <code>locator\x3c/code>.\x3c/p>","*<a href=\"xpath://table/tbody/tr[1]/td[6\">xpath://table/tbody/tr[1]/td[6\x3c/a>]","*${price}","*${price} = $472.56","*<a href=\"xpath://table/tbody/tr[1]/td[2\">xpath://table/tbody/tr[1]/td[2\x3c/a>]","*${number}","*${number} = 43","*<a href=\"xpath://table/tbody/tr[1]/td[3\">xpath://table/tbody/tr[1]/td[3\x3c/a>]","*${airline}","*${airline} = Virgin America","*Set Global Variable","*<p>Makes a variable available globally in all tests and suites.\x3c/p>","*\\${flight_price}    ${price}","*${flight_price} = $472.56","*\\${flight_number}    ${number}","*${flight_number} = 43","*\\${flight_airline}    ${airline}","*${flight_airline} = Virgin America","*Log","*<p>Logs the given message with the given level.\x3c/p>","*Selected flight: ${flight_number}, ${flight_airline}, ${flight_price}","*Selected flight: 43, Virgin America, $472.56","*Clicking button '<a href=\"xpath://table/tbody/tr[1]/td[1]/input\">xpath://table/tbody/tr[1]/td[1]/input\x3c/a>'.","*Check the flight price","*400 != 472.56","*Remove String","*String","*<p>Removes all <code>removables\x3c/code> from the given <code>string\x3c/code>.\x3c/p>","*${flight_price}    $","*${expected_price}","*${expected_price} = 472.56","*<a href=\"xpath://p[starts-with(normalize-space(\">xpath://p[starts-with(normalize-space(\x3c/a>.), 'Price:')]","*${text}","*${text} = Price: 400","*${text}    Price:    $","*${text} =  400","*Split String","*<p>Splits the <code>string\x3c/code> using <code>separator\x3c/code> as a delimiter string.\x3c/p>","*@{parts}","*@{parts} = [ 400 ]","*Should Be Equal","*<p>Fails if the given objects are unequal.\x3c/p>","*${parts}[0]    ${expected_price}"]);
 </script>
 <script type="text/javascript">
-window.output["stats"] = [[{"elapsed":"00:00:00","fail":0,"label":"All Tests","pass":1,"skip":0}],[],[{"elapsed":"00:00:00","fail":0,"id":"s1","label":"Testing-2026","name":"Testing-2026","pass":1,"skip":0},{"elapsed":"00:00:00","fail":0,"id":"s1-s1","label":"Testing-2026.Robot Folder","name":"Robot Folder","pass":1,"skip":0},{"elapsed":"00:00:00","fail":0,"id":"s1-s1-s1","label":"Testing-2026.Robot Folder.Demo","name":"Demo","pass":1,"skip":0}]];
+window.output["stats"] = [[{"elapsed":"00:00:06","fail":1,"label":"All Tests","pass":9,"skip":0}],[],[{"elapsed":"00:00:06","fail":1,"id":"s1","label":"Flight Booking","name":"Flight Booking","pass":9,"skip":0}]];
 </script>
 <script type="text/javascript">
 window.output["errors"] = [];
 </script>
 <script type="text/javascript">
-window.output["baseMillis"] = 1790243920634;
+window.output["baseMillis"] = 1791556163505;
 </script>
 <script type="text/javascript">
-window.output["generated"] = 148;
+window.output["generated"] = 6239;
 </script>
 <script type="text/javascript">
 window.output["expand_keywords"] = null;
@@ -2153,9 +2154,8 @@ function addErrors() {
     var errors = window.testdata.errorIterator();
     if (errors.hasNext()) {
         $.tmpl('errorHeaderTemplate').appendTo($('body'));
-        drawErrorsRecursively(errors, $('#errors .messages'));
+        drawErrorsRecursively(errors, $('#errors'));
     }
-    toggleElement('errors');
 }
 
 function drawErrorsRecursively(errors, target) {
@@ -2189,7 +2189,7 @@ function makeElementVisible(id) {
 }
 
 function addExecutionLog(main) {
-    $('body').append('<h2>Execution Log</h2>',
+    $('body').append($(testOrTask('<h2>{Test} Execution Log</h2>')),
                      $.tmpl('suiteTemplate', main));
 }
 </script>
@@ -2234,31 +2234,20 @@ function addExecutionLog(main) {
 </script>
 
 <script type="text/x-jquery-tmpl" id="errorHeaderTemplate">
-  <h2>Execution Errors</h2>
-  <div id="errors">
-    <div class="element-header closed" onclick="toggleElement('errors')">
-      <div class="element-header-toggle" title="Toggle visibility"></div>
-      <div class="label error">ERRORS</div>
-      <div class="name">Errors and warnings during execution</div>
-    </div>
-    <div class="children">
-      <table class="messages"></table>
-    </div>
-  </div>
+  <h2>{{= testOrTask('{Test}')}} Execution Errors</h2>
+  <table id="errors"></table>
 </script>
 
 <script type="text/x-jquery-tmpl" id="errorTemplate">
   <tr id="${id}" class="message-row">
-    <td class="time">
+    <td class="error-time">
       {{if link}}
       <a onclick="makeElementVisible('${link}')" href="#${link}" title="Link to details">${date} ${time}</a>
       {{else}}
       ${date} ${time}
       {{/if}}
     </td>
-    <td class="${level.toLowerCase()} level">
-      <span class="label ${level.toLowerCase()}">${level}</span>
-    </td>
+    <td class="${level.toLowerCase()} level"><span class="label ${level.toLowerCase()}">${level}</span></td>
     <td class="message">{{html text}}</td>
     <td class="select-message" onclick="javascript:selectMessage('${id}')" title="Select message text">
       <div></div>
@@ -2268,18 +2257,18 @@ function addExecutionLog(main) {
 
 <script type="text/x-jquery-tmpl" id="suiteTemplate">
   <div id="${id}" class="suite">
-    <div class="element-header closed" onclick="toggleSuite('${id}')"
-         title="SUITE  {{html name}}  [${status}]">
-      <div class="element-header-toggle" title="Toggle visibility"></div>
-      <div class="label ${status.toLowerCase()}">SUITE</div>
-      <div class="name">{{html name}}</div>
-      <div class="elapsed" title="Elapsed time">${times.elapsedTime}</div>
-      <div class="element-header-menu" onclick="stopPropagation(event)" title="">
+    <div class="element-header closed" onclick="toggleSuite('${id}')">
+      <div class="element-header-left" title="SUITE  {{html name}}  [${status}]">
+        <span class="elapsed" title="Elapsed time">${times.elapsedTime}</span>
+        <span class="label ${status.toLowerCase()}">SUITE</span>
+        <span class="name">{{html name}}</span>
+      </div>
+      <div class="element-header-right" onclick="stopPropagation(event)" title="">
         <a class="expand" title="Expand all" href="javascript:expandAll('${id}')"></a>
         <a class="collapse" title="Collapse all" href="javascript:collapseAll('${id}')"></a>
-        <a class="link" onclick="makeElementVisible('${id}')"
-           title="Link to this suite" href="#${id}"></a>
+        <a class="link" title="Link to this suite" href="#${id}" onclick="makeElementVisible('${id}')"></a>
       </div>
+      <div class="element-header-toggle" title="Toggle visibility"></div>
     </div>
     <div class="children">
       <table class="metadata">
@@ -2330,18 +2319,18 @@ function addExecutionLog(main) {
 
 <script type="text/x-jquery-tmpl" id="testTemplate">
   <div id="${id}" class="test">
-    <div class="element-header closed" onclick="toggleTest('${id}')"
-         title="{{= testOrTask('{TEST}')}}  {{html name}}  [${status}]">
-      <div class="element-header-toggle" title="Toggle visibility"></div>
-      <div class="label ${status.toLowerCase()}">{{= testOrTask('{TEST}')}}</div>
-      <div class="name">{{html name}}</div>
-      <div class="elapsed" title="Elapsed time">${times.elapsedTime}</div>
-      <div class="element-header-menu" onclick="stopPropagation(event)" title="">
+    <div class="element-header closed" onclick="toggleTest('${id}')">
+      <div class="element-header-left" title="{{= testOrTask('{TEST}')}}  {{html name}}  [${status}]">
+        <span class="elapsed" title="Elapsed time">${times.elapsedTime}</span>
+        <span class="label ${status.toLowerCase()}">{{= testOrTask('{TEST}')}}</span>
+        <span class="name">{{html name}}</span>
+      </div>
+      <div class="element-header-right" onclick="stopPropagation(event)" title="">
         <a class="expand" title="Expand all" href="javascript:expandAll('${id}')"></a>
         <a class="collapse" title="Collapse all" href="javascript:collapseAll('${id}')"></a>
-        <a class="link" href="#${id}" onclick="makeElementVisible('${id}')"
-           title="Link to this {{= testOrTask('{test}')}}"></a>
+        <a class="link" title="Link to this {{= testOrTask('{test}')}}" href="#${id}" onclick="makeElementVisible('${id}')"></a>
       </div>
+      <div class="element-header-toggle" title="Toggle visibility"></div>
     </div>
     <div class="children">
       <table class="metadata">
@@ -2388,20 +2377,21 @@ function addExecutionLog(main) {
 
 <script type="text/x-jquery-tmpl" id="keywordTemplate">
   <div id="${id}" class="keyword">
-    <div class="element-header closed" onclick="toggleKeyword('${id}')"
-         title="${type}  {{if name}}{{html fullName}}  {{/if}}[${status}]">
-      <div class="element-header-toggle" title="Toggle visibility"></div>
-      <div class="label ${status.toLowerCase()}">${type}</div>
-      {{if assign}}<div class="assign">{{html assign}}&nbsp;=</div>{{/if}}
-      <div class="name">{{if libname}}<span class="parent-name">{{html libname}} . </span>{{/if}}{{html name}}</div>
-      <div class="arg">{{html arguments}}</div>
-      <div class="elapsed" title="Elapsed time">${times.elapsedTime}</div>
-      <div class="element-header-menu" onclick="stopPropagation(event)">
+    <div class="element-header closed" onclick="toggleKeyword('${id}')">
+      <div class="element-header-left" title="${type}  {{if name}}{{html fullName}}  {{/if}}[${status}]">
+        <span class="elapsed" title="Elapsed time">${times.elapsedTime}</span>
+        <span class="label ${status.toLowerCase()}">${type}</span>
+        <span class="assign">{{html assign}}</span>
+        <span class="name"><span class="parent-name">{{html libname}}{{if libname}} . {{/if}}</span>{{html name}}</span>
+        &nbsp;
+        <span class="arg">{{html arguments}}</span>
+      </div>
+      <div class="element-header-right" onclick="stopPropagation(event)">
         <a class="expand" title="Expand all" href="javascript:expandAll('${id}')"></a>
         <a class="collapse" title="Collapse all" href="javascript:collapseAll('${id}')"></a>
-        <a class="link" onclick="makeElementVisible('${id}')"
-           title="Link to this item" href="#${id}"></a>
+        <a class="link" title="Link to this item" href="#${id}" onclick="makeElementVisible('${id}')"></a>
       </div>
+      <div class="element-header-toggle" title="Toggle visibility"></div>
     </div>
     <div class="children">
       <table class="metadata keyword-metadata">

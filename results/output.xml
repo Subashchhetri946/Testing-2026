@@ -1,39 +1,220 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.4.2 (Python 3.14.7 on win32)" generated="2026-09-24T12:58:40.628720" rpa="false" schemaversion="5">
-<suite id="s1" name="Testing-2026" source="E:\Profile\Web-Dev-Projects\Testing-2026">
-<suite id="s1-s1" name="Robot Folder" source="E:\Profile\Web-Dev-Projects\Testing-2026\Robot Folder">
-<suite id="s1-s1-s1" name="Demo" source="E:\Profile\Web-Dev-Projects\Testing-2026\Robot Folder\demo.robot">
-<test id="s1-s1-s1-t1" name="Make a new directory" line="60">
-<kw name="Create Directory" owner="OperatingSystem">
-<msg time="2026-09-24T12:58:40.749449" level="INFO" html="true">Directory '&lt;a href="file://E:\Profile\Web-Dev-Projects\Testing-2026\testing"&gt;E:\Profile\Web-Dev-Projects\Testing-2026\testing&lt;/a&gt;' already exists.</msg>
-<arg>E:/Profile/Web-Dev-Projects/Testing-2026/testing</arg>
-<doc>Creates the specified directory.</doc>
-<status status="PASS" start="2026-09-24T12:58:40.748975" elapsed="0.000812"/>
+<robot generator="Robot 7.3.2 (Python 3.13.7 on win32)" generated="2026-10-09T17:29:23.503652" rpa="false" schemaversion="5">
+<suite id="s1" name="Flight Booking" source="E:\Profile\Web-Dev-Projects\Testing-2026\Robot Folder\flight_booking.robot">
+<test id="s1-t1" name="Open the travel website" line="15">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:29:24.095691" level="INFO">Opening browser 'Chrome' to base url 'http://blazedemo.com/'.</msg>
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<arg>options=add_argument("--log-level=3")</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-10-09T17:29:24.095392" elapsed="1.857904"/>
 </kw>
-<kw name="Directory Should Exist" owner="OperatingSystem">
-<msg time="2026-09-24T12:58:40.750513" level="INFO" html="true">Directory '&lt;a href="file://E:\Profile\Web-Dev-Projects\Testing-2026\testing"&gt;E:\Profile\Web-Dev-Projects\Testing-2026\testing&lt;/a&gt;' exists.</msg>
-<arg>E:/Profile/Web-Dev-Projects/Testing-2026/testing</arg>
-<doc>Fails unless the given path points to an existing directory.</doc>
-<status status="PASS" start="2026-09-24T12:58:40.750148" elapsed="0.000535"/>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-10-09T17:29:25.953681" elapsed="0.018162"/>
 </kw>
-<status status="PASS" start="2026-09-24T12:58:40.716451" elapsed="0.034559"/>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-10-09T17:29:26.973093" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-10-09T17:29:25.972252" elapsed="1.000962"/>
+</kw>
+<status status="PASS" start="2026-10-09T17:29:24.094501" elapsed="2.878994"/>
 </test>
-<status status="PASS" start="2026-09-24T12:58:40.671387" elapsed="0.083099"/>
-</suite>
-<status status="PASS" start="2026-09-24T12:58:40.663619" elapsed="0.093555"/>
-</suite>
-<status status="PASS" start="2026-09-24T12:58:40.634293" elapsed="0.129769"/>
+<test id="s1-t2" name="Check the welcome message" line="20">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:29:27.046649" level="INFO">Element 'xpath://h1' is displayed.</msg>
+<arg>xpath://h1</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2026-10-09T17:29:26.974787" elapsed="0.072003"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:29:27.059736" level="INFO">Element 'xpath://h1' contains text 'Welcome to the Simple Travel Agency!'.</msg>
+<arg>xpath://h1</arg>
+<arg>Welcome to the Simple Travel Agency!</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2026-10-09T17:29:27.047205" elapsed="0.012681"/>
+</kw>
+<status status="PASS" start="2026-10-09T17:29:26.974260" elapsed="0.085946"/>
+</test>
+<test id="s1-t3" name="Choose Boston" line="24">
+<kw name="Select From List By Value" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:29:27.061325" level="INFO">Selecting options from selection list 'name:fromPort' by value Boston.</msg>
+<arg>name:fromPort</arg>
+<arg>${departure}</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<status status="PASS" start="2026-10-09T17:29:27.060961" elapsed="0.047865"/>
+</kw>
+<status status="PASS" start="2026-10-09T17:29:27.060607" elapsed="0.048559"/>
+</test>
+<test id="s1-t4" name="Choose Cairo" line="27">
+<kw name="Select From List By Value" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:29:27.110140" level="INFO">Selecting options from selection list 'name:toPort' by value Cairo.</msg>
+<arg>name:toPort</arg>
+<arg>${destination}</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<status status="PASS" start="2026-10-09T17:29:27.109907" elapsed="0.040624"/>
+</kw>
+<status status="PASS" start="2026-10-09T17:29:27.109604" elapsed="0.041188"/>
+</test>
+<test id="s1-t5" name="Check the Find Flights button" line="30">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:29:27.163014" level="INFO">Element 'xpath://input[@value='Find Flights' and not(@disabled)]' is displayed.</msg>
+<arg>xpath://input[@value='Find Flights' and not(@disabled)]</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2026-10-09T17:29:27.151809" elapsed="0.011338"/>
+</kw>
+<status status="PASS" start="2026-10-09T17:29:27.151256" elapsed="0.012352"/>
+</test>
+<test id="s1-t6" name="Search for flights" line="34">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:29:27.164862" level="INFO">Clicking button 'xpath://input[@value='Find Flights']'.</msg>
+<arg>xpath://input[@value='Find Flights']</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-10-09T17:29:27.164592" elapsed="0.045459"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-10-09T17:29:28.211156" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-10-09T17:29:27.210496" elapsed="1.000879"/>
+</kw>
+<status status="PASS" start="2026-10-09T17:29:27.164239" elapsed="1.047794"/>
+</test>
+<test id="s1-t7" name="Check the flight route" line="38">
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:29:28.229172" level="INFO">Element 'xpath://h3' contains text 'Flights from Boston to Cairo:'.</msg>
+<arg>xpath://h3</arg>
+<arg>Flights from ${departure} to ${destination}:</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2026-10-09T17:29:28.213909" elapsed="0.015394"/>
+</kw>
+<status status="PASS" start="2026-10-09T17:29:28.213191" elapsed="0.016409"/>
+</test>
+<test id="s1-t8" name="Check that a flight is available" line="41">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:29:28.243765" level="INFO">Element 'xpath://table/tbody/tr[1]/td[1]/input' is displayed.</msg>
+<arg>xpath://table/tbody/tr[1]/td[1]/input</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2026-10-09T17:29:28.230680" elapsed="0.013216"/>
+</kw>
+<status status="PASS" start="2026-10-09T17:29:28.230150" elapsed="0.014044"/>
+</test>
+<test id="s1-t9" name="Save the flight details and choose it" line="45">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:29:28.260883" level="INFO">${price} = $472.56</msg>
+<var>${price}</var>
+<arg>xpath://table/tbody/tr[1]/td[6]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-10-09T17:29:28.245179" elapsed="0.015769"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:29:28.278385" level="INFO">${number} = 43</msg>
+<var>${number}</var>
+<arg>xpath://table/tbody/tr[1]/td[2]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-10-09T17:29:28.261367" elapsed="0.017083"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:29:28.295884" level="INFO">${airline} = Virgin America</msg>
+<var>${airline}</var>
+<arg>xpath://table/tbody/tr[1]/td[3]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-10-09T17:29:28.278898" elapsed="0.017055"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2026-10-09T17:29:28.296536" level="INFO">${flight_price} = $472.56</msg>
+<arg>\${flight_price}</arg>
+<arg>${price}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2026-10-09T17:29:28.296300" elapsed="0.000287"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2026-10-09T17:29:28.297275" level="INFO">${flight_number} = 43</msg>
+<arg>\${flight_number}</arg>
+<arg>${number}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2026-10-09T17:29:28.296967" elapsed="0.000382"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2026-10-09T17:29:28.297978" level="INFO">${flight_airline} = Virgin America</msg>
+<arg>\${flight_airline}</arg>
+<arg>${airline}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2026-10-09T17:29:28.297694" elapsed="0.000361"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-10-09T17:29:28.298668" level="INFO">Selected flight: 43, Virgin America, $472.56</msg>
+<arg>Selected flight: ${flight_number}, ${flight_airline}, ${flight_price}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-10-09T17:29:28.298426" elapsed="0.000299"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:29:28.299490" level="INFO">Clicking button 'xpath://table/tbody/tr[1]/td[1]/input'.</msg>
+<arg>xpath://table/tbody/tr[1]/td[1]/input</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-10-09T17:29:28.299206" elapsed="0.363935"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-10-09T17:29:29.664363" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-10-09T17:29:28.663544" elapsed="1.000971"/>
+</kw>
+<status status="PASS" start="2026-10-09T17:29:28.244581" elapsed="1.420893"/>
+</test>
+<test id="s1-t10" name="Check the flight price" line="56">
+<kw name="Remove String" owner="String">
+<msg time="2026-10-09T17:29:29.666928" level="INFO">${expected_price} = 472.56</msg>
+<var>${expected_price}</var>
+<arg>${flight_price}</arg>
+<arg>$</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2026-10-09T17:29:29.666516" elapsed="0.000461"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2026-10-09T17:29:29.682715" level="INFO">${text} = Price: 400</msg>
+<var>${text}</var>
+<arg>xpath://p[starts-with(normalize-space(.), 'Price:')]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-10-09T17:29:29.667221" elapsed="0.015546"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2026-10-09T17:29:29.683355" level="INFO">${text} =  400</msg>
+<var>${text}</var>
+<arg>${text}</arg>
+<arg>Price:</arg>
+<arg>$</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2026-10-09T17:29:29.683073" elapsed="0.000328"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2026-10-09T17:29:29.684147" level="INFO">@{parts} = [ 400 ]</msg>
+<var>@{parts}</var>
+<arg>${text}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2026-10-09T17:29:29.683782" elapsed="0.000433"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<msg time="2026-10-09T17:29:29.685101" level="FAIL">400 != 472.56</msg>
+<arg>${parts}[0]</arg>
+<arg>${expected_price}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="FAIL" start="2026-10-09T17:29:29.684561" elapsed="0.000848">400 != 472.56</status>
+</kw>
+<status status="FAIL" start="2026-10-09T17:29:29.665999" elapsed="0.019856">400 != 472.56</status>
+</test>
+<status status="FAIL" start="2026-10-09T17:29:23.505433" elapsed="6.181633"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="0" skip="0">All Tests</stat>
+<stat pass="9" fail="1" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat name="Testing-2026" id="s1" pass="1" fail="0" skip="0">Testing-2026</stat>
-<stat name="Robot Folder" id="s1-s1" pass="1" fail="0" skip="0">Testing-2026.Robot Folder</stat>
-<stat name="Demo" id="s1-s1-s1" pass="1" fail="0" skip="0">Testing-2026.Robot Folder.Demo</stat>
+<stat name="Flight Booking" id="s1" pass="9" fail="1" skip="0">Flight Booking</stat>
 </suite>
 </statistics>
 <errors>
